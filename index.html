@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/bundle.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="credit-card">
+            <div class="credit-card__container">
+                <div class="credit-card__container-numbers" id="credit_card_number_print">
+                </div>
+                <div class="credit-card__logo"></div>
+                <div class="credit-card__container-expiry" id="credit_card_expiry_print">
+                </div>
+            </div>
+        </div>
+        <form class="form" autocomplete="off">
+            <div class="form-field">
+                <label>Número de la Tarjeta</label>
+                <input type="number" name="credit_card_number" id="credit_card_number" maxlength="16" value="">
+            </div>
+            <div class="form-field">
+                <label>EXP</label>
+                <div class="row">
+                    <div class="column">
+                        <div class="select" id="selectMonth">
+                            <select >
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="divider">/</span>
+                    <div class="column">
+                        <div class="select" id="selectYear">
+                            <select >
+                                <option>20</option>
+                                <option>21</option>
+                                <option>22</option>
+                                <option>23</option>
+                                <option>24</option>
+                                <option>25</option>
+                                <option>26</option>
+                                <option>27</option>
+                                <option>28</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <img src="./src/img/3623355.jpg" style="opacity: 0;">
+    <img src="./src/img/333041-PA87UJ-960.jpg" style="opacity: 0;">
+    <script src="dist/bundle.js"></script>
+</body>
+</html>
