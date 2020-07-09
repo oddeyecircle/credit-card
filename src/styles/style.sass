@@ -52,10 +52,15 @@ body
     background-repeat: no-repeat
     &.zoom-on-numbers
         transform: scale(1.4) translateX(54px) translateY(0px)
+    &.zoom-on-expiry
+        transform: scale(1.4) translateX(46px) translateY(-28px)
+        .credit-card__container-expiry
+            opacity: 1
     &.credit-card
         &-is-mastercard
             background-image: url('../img/3623355.jpg')
-            .credit-card__container-numbers
+            .credit-card__container-numbers,
+            .credit-card__container-expiry
                 color: white
             .credit-card__logo
                 background-image: url('../img/mastercard.svg')
@@ -152,6 +157,8 @@ input[type=number]
 
 .select-selected
     background-color: white
+    &.is-disabled
+        color: rgba(black, .42)
     &::after
         position: absolute
         content: ''
@@ -172,6 +179,10 @@ input[type=number]
     border-color: transparent transparent rgba(black, .12) transparent
     &:last-of-type
         border-color: transparent
+    &:first-of-type
+        pointer-events: none
+        color: rgba(black, .42)
+        
         
 .select-selected
     padding: 8px 16px
@@ -215,6 +226,30 @@ input[type=number]
 .credit-card__container-expiry
     font-family: 'Credit Card'
     font-size: 12px
+    position: absolute
+    top: 65%
+    display: flex
+    align-items: center
+    left: 25%
+    opacity: 0
+    color: rgba(black, .42)
+    transition: opacity 300ms $cubic
+    &.has-numbers
+        opacity: 1
+
+.credit-card__container-numbers__expiry
+    overflow: hidden
+    position: relative
+    width: 20px
+    height: 17px
+
+.credit-card_container-expiry__month-animate,
+.credit-card_container-expiry__year-animate
+    animation: showFromBottom 120ms $cubic
+    animation-play-state: paused
+    position: absolute
+    &.animate
+        animation-play-state: running
 
 
 @media screen and (max-width: 768px)

@@ -16,15 +16,18 @@ for (i of x) {
     for(j of selEl) {
         c = create('div')
         c.innerHTML = j.innerHTML;
+        if (j.attributes.disabled) {
+            a.classList.add('is-disabled')
+        }
         c.addEventListener('click', function(e) {
             let y, i, k, s, h;
             s = this.parentNode.parentNode.querySelector('select');
             h = this.parentNode.previousSibling;
+            h.classList.remove('is-disabled')
             for (const [i, v] of Array.from(s).entries()) {
                 if (v.innerHTML == this.innerHTML) {
                     s.selectedIndex = i;
                     h.innerHTML = this.innerHTML;
-                    h.dataset.value = s.value;
                     y = this.parentNode.querySelectorAll('.same-as-selected');
                     for (k of y) {
                         k.removeAttribute('class')

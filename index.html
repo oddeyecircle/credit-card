@@ -14,6 +14,14 @@
                 </div>
                 <div class="credit-card__logo"></div>
                 <div class="credit-card__container-expiry" id="credit_card_expiry_print">
+                    <small>EXP.</small>
+                    <div class="credit-card__container-numbers__expiry">
+                        <div class="credit-card_container-expiry__month-animate"></div>
+                    </div>
+                    /
+                    <div class="credit-card__container-numbers__expiry">
+                        <div class="credit-card_container-expiry__year-animate"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,7 +35,8 @@
                 <div class="row">
                     <div class="column">
                         <div class="select" id="selectMonth">
-                            <select >
+                            <select>
+                                <option selected value="MM" disabled>MM</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
@@ -47,15 +56,16 @@
                     <div class="column">
                         <div class="select" id="selectYear">
                             <select >
-                                <option>20</option>
-                                <option>21</option>
-                                <option>22</option>
-                                <option>23</option>
-                                <option>24</option>
-                                <option>25</option>
-                                <option>26</option>
-                                <option>27</option>
-                                <option>28</option>
+                                <option selected value="YY" disabled>YY</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
                             </select>
                         </div>
                     </div>

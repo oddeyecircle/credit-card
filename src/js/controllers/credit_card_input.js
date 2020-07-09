@@ -1,6 +1,6 @@
 import { getCardType } from "../utils/type_of_card";
 
-let numbersArray = []
+let numbersArray = [];
 
 export const checkCreditCardNumber = value => {
     return getCardType(value);
@@ -49,8 +49,17 @@ export const writeCreditCardNumbers = (value, el) => {
     if (childInnerText.toString().replace(/[,]/g, '') != value) {
         el.innerHTML = '';
         numbersArray.forEach(number => {
-            
             el.insertAdjacentHTML('beforeend', `<div class="credit-card__number"><div>${number}</div></div>`)
         })
     }
 };
+
+export const handleClassListInputValidation = (el,valid) => {
+    if (valid) {
+        el.classList.add('input-is-valid')
+        el.classList.remove('input-is-invalid')
+    } else {
+        el.classList.remove('input-is-valid')
+        el.classList.add('input-is-invalid')
+    }
+}
