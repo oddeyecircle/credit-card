@@ -5,6 +5,7 @@ import '../styles/style.sass'
 import './utils/select'
 
 import './views/credit_card_input'
+import './views/select_input'
 
 // // new selectController();
 

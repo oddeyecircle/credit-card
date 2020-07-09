@@ -10,7 +10,13 @@ elements.creditCardNumberInput.addEventListener('input', function(e) {
     }
     value = creditCardInput.checkCreditCardNumber(elements.creditCardNumberInput.value);
     const valid = creditCardInput.handleOnInputValidation(value);
-    this.classList.add(valid);
+    if (valid) {
+        this.classList.add('input-is-valid')
+        this.classList.remove('input-is-invalid')
+    } else {
+        this.classList.remove('input-is-valid')
+        this.classList.add('input-is-invalid')
+    }
     creditCardInput.writeCreditCardNumbers(this.value, elements.creditCardNumbersPrint);
 });
 
@@ -26,5 +32,8 @@ elements.creditCardNumberInput.addEventListener('blur', function(e) {
     const val = value === 'VISA' || value ===  'MASTERCARD' ? true : false;
     if (val) {
         creditCard.handleClassListOnCard(elements.creditCardContainer, creditCardClass, 'add')
+    } else {
+        creditCard.handleClassListOnCard(elements.creditCardContainer, ['credit-card-is-mastercard', 'credit-card-is-visa'], 'remove')
+
     }
 })

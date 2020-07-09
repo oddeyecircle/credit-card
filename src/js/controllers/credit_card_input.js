@@ -18,14 +18,14 @@ export const getCorrectClass = value => {
 
 export const handleOnInputValidation = value => {
     if (value !== undefined && value !== "") {
-        return "input-is-valid";
+        return true;
     } else {
-        return "input-is-invalid";
+        return false;
     }
 };
 
 export const removeClassOnFocusBlur = el => {
-    if (el.value === "" || el.value === undefined) {
+    if (el.value === "" || el.value === undefined || checkCreditCardNumber(el.value)) {
         el.removeAttribute("class");
     }
 };
