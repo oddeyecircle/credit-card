@@ -17,7 +17,7 @@ export const getCorrectClass = value => {
 };
 
 export const handleOnInputValidation = value => {
-    if (value !== undefined && value !== "") {
+    if (value !== undefined && value !== "" && value.length >= 3) {
         return true;
     } else {
         return false;
@@ -61,5 +61,12 @@ export const handleClassListInputValidation = (el,valid) => {
     } else {
         el.classList.remove('input-is-valid')
         el.classList.add('input-is-invalid')
+    }
+}
+
+export const handleInputLength = (input, max) => {
+    if (input.value.length > max) {
+        input.value = input.value.slice(0, max)
+        return;
     }
 }

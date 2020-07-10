@@ -6,6 +6,15 @@ $cubic: cubic-bezier(0.83, 0, 0.17, 1)
     to
         top: 0
 
+@keyframes rotate
+    0%
+        transform: rotate(0deg)
+    60%
+        transform: rotate(300deg)
+    100%
+        transform: rotate(359deg)
+
+
 *,
 ::before,
 ::after
@@ -19,22 +28,37 @@ body
 
 .container
     width: 414px
-    height: 736px
     max-width: 100%
-    max-height: 100vh
     background-color: white
     margin: 0 auto
-    border: thin solid #c5e5f8
+    border: thin solid rgba(black, .12)
     padding: 0 16px 16px
 
 .credit-card
-    background-color: #f6f6f6
+    background-color: #ffffff
     border-radius: 8px
     display: block
     margin: 16px auto
     height: 200px
     overflow: hidden
     position: relative
+    perspective: 1000px
+    &.card-is-flipped
+        .credit-card-inner
+            transform: rotateY(180deg)
+
+.credit-card-inner
+    position: relative
+    width: 100%
+    height: 100%
+    transition: transform 600ms $cubic
+    transform-style: preserve-3d
+    
+
+.credit-card__container-back
+    position: absolute
+    top: 100%
+    left: 100%
 
 .credit-card__container
     display: flex
@@ -47,9 +71,36 @@ body
     border-radius: 8px
     background-image: url('../img/333041-PA87UJ-960.jpg')
     background-size: 150%
-    transition: all 300ms $cubic
+    transition: all 600ms $cubic
     background-position: 30%
     background-repeat: no-repeat
+    transform-style: preserve-3d
+    backface-visibility: hidden
+    &.back
+        transform: rotateY(180deg)
+        background-image: url('../img/333041-PA87UJ-960-flip.jpg')
+        background-position: 70%
+        &.zoom-on-ccv
+            transform: rotateY(180deg) translateX(-75px) scale(1.4)
+        .bar
+            height: 40px
+            background-color: black
+            position: absolute
+            top: 20%
+            width: 100%
+        .ccv
+            height: 30px
+            background-color: white
+            top: 50%
+            width: 70%
+            position: absolute
+            left: 50%
+            transform: translateX(-50%)
+            padding-right: 16px
+            display: flex
+            justify-content: flex-end
+            align-items: center
+
     &.zoom-on-numbers
         transform: scale(1.4) translateX(54px) translateY(0px)
     &.zoom-on-expiry
@@ -65,6 +116,20 @@ body
             .credit-card__logo
                 background-image: url('../img/mastercard.svg')
                 bottom: 8px
+            + .back
+                background-image: url('../img/3623355.jpg')
+        &-is-visa
+            background-image: url('../img/2783702.jpg')
+            .credit-card__container-numbers,
+            .credit-card__container-expiry
+                color: white
+            .credit-card__logo
+                background-image: url('../img/visa.png')
+                bottom: 8px
+                right: 16px
+            + .back
+                background-image: url('../img/2783702.jpg')
+
 
 
 .credit-card__container-numbers
@@ -75,6 +140,12 @@ body
     transform: translateY(-50%)
     left: 16px
     transition: all 300ms $cubic
+    &.name
+        top: 90%
+        .credit-card__number
+            text-transform: uppercase
+            &:nth-of-type(4n)
+                margin-right: auto
 
 .credit-card__number
     display: inline-block
@@ -82,6 +153,7 @@ body
     position: relative
     width: 12px
     height: 18px
+    font-family: 'Credit Card'
     &:nth-of-type(4n)
         margin-right: 8px
     .credit-card__number-animate
@@ -105,6 +177,18 @@ input::-webkit-inner-spin-button
     margin: 0
 input[type=number]
     -moz-appearance: textfield
+
+.form.disabled
+    pointer-events: none
+    input,
+    select,
+    .select-selected
+        cursor: not-allowed
+        pointer-events: none
+        background-color: rgba(black, .06) !important
+    .form-field,
+    .select
+        pointer-events: none
 
 .form-field
     display: flex
@@ -157,12 +241,16 @@ input[type=number]
 
 .select-selected
     background-color: white
+    height: 40px
+    display: flex
+    flex-direction: column
+    justify-content: center
     &.is-disabled
         color: rgba(black, .42)
     &::after
         position: absolute
         content: ''
-        top: 14px
+        top: 18px
         right: 10px
         width: 0
         height: 0
@@ -220,7 +308,7 @@ input[type=number]
 .column
     display: flex
     flex-direction: column
-    flex-basis: 25%
+    flex: 1
     position: relative
 
 .credit-card__container-expiry
@@ -251,6 +339,43 @@ input[type=number]
     &.animate
         animation-play-state: running
 
+.ccv
+    padding-left: 16px
+
+.button
+    appearance: none
+    background-color: #14d179
+    color: white
+    font-weight: 600
+    border: none
+    width: 100%
+    padding: 8px 16px
+    font-size: .9rem
+    text-transform: uppercase
+    cursor: pointer
+    margin-top: 42px
+    user-select: none
+    &.disabled
+        background-color: mix(#14d179, black, 90%)
+        pointer-events: none
+        cursor: not-allowed
+    &:hover
+        background-color: mix(#14d179, black, 90%)
+    &:focus
+        outline: 0
+    &:disabled
+        background-color: mix(#14d179, white, 30%)
+        pointer-events: none
+        cursor: not-allowed
+
+.loader
+    width: 16px
+    height: 16px
+    border: 2px solid white
+    border-top-color: transparent
+    border-radius: 100%
+    margin: 0 auto
+    animation: rotate 1s linear infinite
 
 @media screen and (max-width: 768px)
     .credit-card__container-numbers
@@ -258,3 +383,11 @@ input[type=number]
         font-size: 14px
     .credit-card__container.zoom-on-numbers
         transform: scale(1.3) translateX(36px) translateY(0px)
+    .row
+        flex-wrap: wrap
+    .column-sm
+        flex-basis: 100%
+    .ccv
+        padding-left: 0
+    .credit-card__container.back.zoom-on-ccv
+        transform: rotateY(180deg) translateX(-60px) scale(1.4)

@@ -9,19 +9,29 @@
 <body>
     <div class="container">
         <div class="credit-card">
-            <div class="credit-card__container">
-                <div class="credit-card__container-numbers" id="credit_card_number_print">
+            <div class="credit-card-inner">
+                <div class="credit-card__container">
+                    <div class="credit-card__container-numbers" id="credit_card_number_print">
+                    </div>
+                    <div class="credit-card__logo"></div>
+                    <div class="credit-card__container-expiry" id="credit_card_expiry_print">
+                        <small>EXP.</small>
+                        <div class="credit-card__container-numbers__expiry">
+                            <div class="credit-card_container-expiry__month-animate"></div>
+                        </div>
+                        /
+                        <div class="credit-card__container-numbers__expiry">
+                            <div class="credit-card_container-expiry__year-animate"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="credit-card__container-numbers name" id="printName">
+
+                    </div>
                 </div>
-                <div class="credit-card__logo"></div>
-                <div class="credit-card__container-expiry" id="credit_card_expiry_print">
-                    <small>EXP.</small>
-                    <div class="credit-card__container-numbers__expiry">
-                        <div class="credit-card_container-expiry__month-animate"></div>
-                    </div>
-                    /
-                    <div class="credit-card__container-numbers__expiry">
-                        <div class="credit-card_container-expiry__year-animate"></div>
-                    </div>
+                <div class="credit-card__container back" id="creditCardBack">
+                    <div class="bar"></div>
+                    <div class="ccv"></div>
                 </div>
             </div>
         </div>
@@ -30,7 +40,8 @@
                 <label>Número de la Tarjeta</label>
                 <input type="number" name="credit_card_number" id="credit_card_number" maxlength="16" value="">
             </div>
-            <div class="form-field">
+           <div class="row">
+            <div class="form-field column column-sm">
                 <label>EXP</label>
                 <div class="row">
                     <div class="column">
@@ -71,6 +82,18 @@
                     </div>
                 </div>
             </div>
+            <div class="column form-field ccv">
+                <label>CVV/CVC</label>
+                <input type="number" id="ccv_input" name="ccv_input">
+            </div>
+           </div>
+           <div class="form-field">
+               <label>Nombre</label>
+               <input type="text" name="credit_card_name" id="credit_card_name" placeholder="OPCIONAL">
+           </div>
+           <button class="button" type="submit" disabled>
+               Pagar
+           </button>
         </form>
     </div>
     <img src="./src/img/3623355.jpg" style="opacity: 0;">

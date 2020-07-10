@@ -1,13 +1,11 @@
 import { elements } from './base';
 import * as creditCardInput from '../controllers/credit_card_input';
-import * as creditCard from '../controllers/credit_card'
+import * as creditCard from '../controllers/credit_card';
+
 let value;
 
 elements.creditCardNumberInput.addEventListener('input', function(e) {
-    if (this.value.length > 16) {
-        this.value = this.value.slice(0, 16)
-        return;
-    }
+    creditCardInput.handleInputLength(this, 16)
     value = creditCardInput.checkCreditCardNumber(elements.creditCardNumberInput.value);
     const valid = creditCardInput.handleOnInputValidation(value);
     creditCardInput.handleClassListInputValidation(this, valid)
@@ -15,7 +13,7 @@ elements.creditCardNumberInput.addEventListener('input', function(e) {
 });
 
 elements.creditCardNumberInput.addEventListener('focus', function(e) {
-    creditCardInput.removeClassOnFocusBlur(this);
+    // creditCardInput.removeClassOnFocusBlur(this);
     creditCard.handleClassListOnCard(elements.creditCardContainer, 'zoom-on-numbers', 'add')
 })
 

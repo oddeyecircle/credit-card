@@ -40,20 +40,34 @@ const doCheck = (a, b) => {
     const selectedMonth = parseInt(b[0]);
     const currentYear = parseInt(a[1]);
     const selectedYear = parseInt(b[1]);
-    if (selectedYear > currentYear) {
-        return;
-    } else if (selectedYear == currentYear && selectedMonth >= currentMonth) {
-        document.querySelectorAll(".select-selected").forEach(s => {
-            if (s.classList.contains("input-is-invalid")) {
-                s.classList.remove("input-is-invalid");
-            }
-        });
-        return;
-    } else if (selectedMonth < currentMonth) {
-        document.querySelectorAll(".select-selected").forEach(s => {
-            if (!s.classList.contains("input-is-invalid")) {
-                s.classList.add("input-is-invalid");
-            }
-        });
+    const select = document.querySelectorAll('.select-selected');
+    switch (true) {
+        case selectedMonth < currentMonth && selectedYear <= currentYear:
+            select.forEach(s => !s.classList.contains('input-is-invalid') ? s.classList.add('input-is-invalid') : '');
+            return;
+        case selectedMonth <= currentMonth && selectedYear >= currentYear:
+            select.forEach(s => {
+                s.classList.add('input-is-valid')
+                s.classList.remove('input-is-invalid')
+            });
+            return;
+        default:
+            return;
     }
+    // if (selectedYear > currentYear) {
+    //     return;
+    // } else if ((selectedYear == currentYear && selectedMonth >= currentMonth) || (selectedYear > currentYear && selectedMonth == currentMonth)) {
+    //     document.querySelectorAll(".select-selected").forEach(s => {
+    //         if (s.classList.contains("input-is-invalid")) {
+    //             s.classList.remove("input-is-invalid");
+    //         }
+    //     });
+    //     return;
+    // } else if (selectedMonth < currentMonth) {
+    //     document.querySelectorAll(".select-selected").forEach(s => {
+    //         if (!s.classList.contains("input-is-invalid")) {
+    //             s.classList.add("input-is-invalid");
+    //         }
+    //     });
+    // }
 };
